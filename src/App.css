@@ -1,38 +1,174 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 2rem;
+}
+
+header .logo {
+  flex: 1;
+}
+
+header .input-search {
+  flex: 4;
+  border: 1px solid lightgrey;
+}
+
+header input {
+  width: 100%;
+}
+
+header .other-tag {
+  flex: 1;
+  border: 1px solid lightseagreen;
+  color: lightseagreen;
+}
+
+.banner-container img {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+/* Général */
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+
+html {
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+h1 {
   text-align: center;
+  font-size: 2rem;
+  font-weight: bol;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Home page */
+main {
+  /* background-color: lightgray; */
   min-height: 100vh;
+}
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow-x: hidden;
+}
+
+.image-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.offer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  background-color: lightgray;
+}
+
+.offer-image {
+  width: 30%;
+}
+
+.offer-image img {
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+.offer-data {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.offer-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.offer-detail-element {
+  display: flex;
+  justify-content: space-between;
+}
+
+.offer-detail-title {
+  color: grey;
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.product-name-container {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.product-desc-container {
+  color: grey;
+  font-size: 1rem;
+}
+
+/* Signup */
+
+.container-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.container-field {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  /* width: 3rem; */
+}
+input {
+  background-color: #fcf9f9;
+  border: solid 1px grey;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: violet;
   color: white;
+  border: none;
+  width: 200px;
 }
 
-.App-link {
-  color: #61dafb;
+.error {
+  color: red;
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.no-error {
+  display: none;
 }
