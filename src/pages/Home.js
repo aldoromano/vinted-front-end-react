@@ -34,8 +34,21 @@ const Home = ({ urlBase }) => {
             // console.log(elem);
             return (
               <Link to={`/offer/${elem._id}`} key={elem._id}>
+                <div>
+                  {elem.owner && (
+                    <img
+                      src={elem.owner.account.avatar.secure_url}
+                      alt="owner"
+                      style={{ height: 50, width: 50 }}
+                    />
+                  )}
+                  {elem.owner && <span>{elem.owner.account.username}</span>}
+                </div>
                 <div className="image-container">
-                  <img src={elem.product_image.url} alt="product-rep"></img>
+                  <img
+                    src={elem.product_image.secure_url}
+                    alt="product-rep"
+                  ></img>
                 </div>
               </Link>
             );
