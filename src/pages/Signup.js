@@ -28,6 +28,7 @@ const Signup = ({ urlBase, setToken }) => {
       navigate("/");
     } catch (error) {
       console.log("Erreur : ", error.response.data);
+      console.log("Erreur : ", error.response.status);
     }
   };
 

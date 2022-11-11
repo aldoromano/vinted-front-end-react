@@ -8,16 +8,34 @@ import Offer from "./pages/Offer";
 import Header from "./pages/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Cookies from "js-cookie";
 
 function App() {
-  const [token, setToken] = useState(null);
+  // Le token
+  const [token, setToken] = useState(Cookies.get("token") || null);
+
+  // La chaine de recherche url
+  const [urlFilter, setUrlFilter] = useState("?page=1&limit=8");
+
+  // Les URL...
   //const urlBase = "http://localhost:3000/";
   const urlBase = "https://lereacteur-vinted-api.herokuapp.com";
+
   return (
     <Router>
-      <Header token={token} setToken={setToken}></Header>
+      <Header
+        token={token}
+        setToken={setToken}
+        urlFilter={urlFilter}
+        setUrlFilter={setUrlFilter}
+      ></Header>
       <Routes>
-        <Route path="/" element={<Home urlBase={urlBase} token={token} />} />
+        <Route
+          path="/"
+          element={
+            <Home urlBase={urlBase} token={token} urlFilter={urlFilter} />
+          }
+        />
         <Route
           path="/signup"
           element={<Signup urlBase={urlBase} setToken={setToken} />}

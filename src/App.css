@@ -4,6 +4,9 @@
 
 /* Header */
 
+header {
+  height: 100px;
+}
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -58,11 +61,12 @@ h1 {
 /* Home page */
 main {
   /* background-color: lightgray; */
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 .main-container {
   max-width: 1200px;
   margin: 0 auto;
+  height: calc(100vh - 100px);
 }
 
 .images-container {
@@ -80,12 +84,24 @@ main {
   object-fit: cover;
 }
 
+.offer-card-container {
+  text-decoration: none;
+}
 .offer-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   background-color: lightgray;
+  height: calc(100vh - 100px);
+}
+
+.header-image-container {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .offer-image {
@@ -99,6 +115,7 @@ main {
   width: 100%;
 }
 .offer-data {
+  height: 300px;
   width: 30%;
   display: flex;
   flex-direction: column;
