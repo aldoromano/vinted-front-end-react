@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { React, useState } from "react";
+import Cookies from "js-cookie";
 
 /* Pages */
 import Home from "./pages/Home";
@@ -8,7 +9,7 @@ import Offer from "./pages/Offer";
 import Header from "./pages/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Cookies from "js-cookie";
+import Publish from "./pages/Publish";
 
 function App() {
   // Le token
@@ -32,6 +33,9 @@ function App() {
   // Le prix maximum
   const [priceMax, setPriceMax] = useState(0);
 
+  // La présence du filtre
+  const [filter, setFilter] = useState(true);
+
   // Les URL...
   // URL pour test en local
   //const urlBase = "http://localhost:3000/";
@@ -47,6 +51,8 @@ function App() {
         setPriceMin={setPriceMin}
         setPriceMax={setPriceMax}
         setOrderBy={setOrderBy}
+        filter={filter}
+        setFilter={setFilter}
       ></Header>
       <Routes>
         <Route
@@ -63,6 +69,8 @@ function App() {
               setPageNumber={setPageNumber}
               limit={limit}
               setLimit={setLimit}
+              filter={filter}
+              setFilter={setFilter}
             />
           }
         />
@@ -77,6 +85,11 @@ function App() {
         <Route
           path="/offer/:id"
           element={<Offer urlBase={urlBase} token={token} />}
+        />
+
+        <Route
+          path="/publish"
+          element={<Publish urlBase={urlBase} token={token} />}
         />
       </Routes>
     </Router>

@@ -35,18 +35,35 @@ header .logo {
 
 header .input-search {
   flex: 2;
-  border: 1px solid lightgrey;
+
+  /* border: 1px solid lightgrey; */
 }
 
 header input {
-  width: 100%;
+  width: 80%;
   color: grey;
+  border: none;
+  background-color: rgba(239, 226, 226, 0.875);
+  border-radius: 5px;
+}
+
+header a {
+  text-decoration: none;
 }
 
 header .other-tag {
   border: 1px solid lightseagreen;
   color: lightseagreen;
-  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.header-tag-logout {
+  background-color: rgb(105, 27, 27);
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 header .sell-tag {
@@ -244,4 +261,47 @@ input {
   color: white;
   border: none;
   text-align: center;
+}
+
+/* PUBLISH */
+
+.publish-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ebedee;
+  height: calc(100vh - 100px);
+}
+
+.publish-container form {
+  width: 75%;
+}
+.publish-general-container {
+  border: 1px solid rgb(236, 226, 226);
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  background-color: white;
+  color: grey;
+}
+
+.publish-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(236, 226, 226);
+}
+
+.publish-item-container input {
+  border: none;
+  width: 60%;
+  /* margin: 1rem; */
+}
+
+.publish-item-container p {
+  margin-top: 1rem;
+  font-weight: bold;
+  vertical-align: center;
 }

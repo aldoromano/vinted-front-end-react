@@ -4,7 +4,7 @@ const Logout = ({ setToken }) => {
   const navigate = useNavigate(); // rappel
   return (
     <div
-      className="other-tag"
+      className="header-tag-logout"
       onClick={() => {
         Cookies.remove("token");
         setToken("");

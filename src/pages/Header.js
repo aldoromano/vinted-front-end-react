@@ -9,6 +9,8 @@ const Header = ({
   setPriceMin,
   setPriceMax,
   setOrderBy,
+  filter,
+  setFilter,
 }) => {
   const setRadioValue = () => {
     var ele = document.getElementsByName("order");
@@ -20,12 +22,18 @@ const Header = ({
       }
     }
   };
+
   return (
     <header>
       <div className="header-container">
         <div>
           <Link to="/">
-            <div className="logo">
+            <div
+              className="logo"
+              onClick={() => {
+                setFilter(true);
+              }}
+            >
               <img src={logo} alt="logo"></img>
             </div>
           </Link>
@@ -44,7 +52,14 @@ const Header = ({
             </div>
             {token ? null : (
               <Link to="/signup">
-                <div className="other-tag">s'inscrire</div>
+                <div
+                  className="other-tag"
+                  onClick={() => {
+                    setFilter(false);
+                  }}
+                >
+                  s'inscrire
+                </div>
               </Link>
             )}
 
@@ -52,46 +67,64 @@ const Header = ({
               <Logout setToken={setToken}></Logout>
             ) : (
               <Link to="/login">
-                <div className="other-tag">Se connecter</div>
+                <div
+                  className="other-tag"
+                  onClick={() => {
+                    setFilter(false);
+                  }}
+                >
+                  Se connecter
+                </div>
               </Link>
             )}
 
-            <div className="sell-tag">Vends tes articles</div>
+            <Link to="/publish">
+              <div
+                className="sell-tag"
+                onClick={() => {
+                  setFilter(false);
+                }}
+              >
+                Vends tes articles
+              </div>
+            </Link>
           </div>
-          <div className="header-element-container">
-            <input
-              type="text"
-              placeholder="Prix minimum"
-              onChange={(event) => {
-                setPriceMin(event.target.value);
-              }}
-            ></input>
-            <input
-              type="text"
-              placeholder="Prix maximum"
-              onChange={(event) => {
-                setPriceMax(event.target.value);
-              }}
-            ></input>
-            Croissant :
-            <input
-              type="radio"
-              name="order"
-              value="price-asc"
-              onClick={() => {
-                setRadioValue();
-              }}
-            />
-            Décroissant :
-            <input
-              type="radio"
-              name="order"
-              value="price-desc"
-              onClick={() => {
-                setRadioValue();
-              }}
-            />
-          </div>
+          {filter && (
+            <div className="header-element-container">
+              <input
+                type="text"
+                placeholder="Prix minimum"
+                onChange={(event) => {
+                  setPriceMin(event.target.value);
+                }}
+              ></input>
+              <input
+                type="text"
+                placeholder="Prix maximum"
+                onChange={(event) => {
+                  setPriceMax(event.target.value);
+                }}
+              ></input>
+              Croissant :
+              <input
+                type="radio"
+                name="order"
+                value="price-asc"
+                onClick={() => {
+                  setRadioValue();
+                }}
+              />
+              Décroissant :
+              <input
+                type="radio"
+                name="order"
+                value="price-desc"
+                onClick={() => {
+                  setRadioValue();
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </header>
