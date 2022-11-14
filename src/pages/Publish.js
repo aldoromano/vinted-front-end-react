@@ -3,16 +3,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Publish = ({ urlBase, token }) => {
-  const [file, setFile] = useState();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [file, setFile] = useState(null);
+  const [title, setTitle] = useState("titre");
+  const [description, setDescription] = useState("description");
 
-  const [price, setPrice] = useState("");
-  const [city, setCity] = useState("");
-  const [condition, setCondition] = useState("");
-  const [color, setColor] = useState("");
-  const [brand, setBrand] = useState("");
-  const [size, setSize] = useState("");
+  const [price, setPrice] = useState(50);
+  const [city, setCity] = useState("Paris");
+  const [condition, setCondition] = useState("Neuf");
+  const [color, setColor] = useState("vert");
+  const [brand, setBrand] = useState("nike");
+  const [size, setSize] = useState("M");
 
   const [data, setData] = useState("");
 
@@ -24,6 +24,11 @@ const Publish = ({ urlBase, token }) => {
     try {
       const formData = new FormData();
 
+      console.log(title);
+      console.log(price);
+      console.log(file);
+
+      console.log("Données -> ", title, price, file);
       formData.append("title", title);
       formData.append("description", description);
       formData.append("brand", brand);
@@ -35,15 +40,16 @@ const Publish = ({ urlBase, token }) => {
 
       const response = await axios.post(`${urlBase}/offer/publish`, formData, {
         headers: {
-          authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });
 
-      setData(response.data);
+      //   setData(response.data);
       console.log(response.data);
     } catch (error) {
       console.log(error.message);
+      console.log(error.response.data);
     }
   };
   return token ? (
