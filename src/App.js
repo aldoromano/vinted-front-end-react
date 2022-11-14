@@ -14,11 +14,28 @@ function App() {
   // Le token
   const [token, setToken] = useState(Cookies.get("token") || null);
 
-  // La chaine de recherche url
-  const [urlFilter, setUrlFilter] = useState("?page=1&limit=8");
+  // Le champ de recherche
+  const [searchText, setSearchText] = useState(null);
+
+  // Le tri
+  const [orderBy, setOrderBy] = useState("price-asc");
+
+  // Le numéro de page
+  const [pageNumber, setPageNumber] = useState(1);
+
+  // le nombre maximum d'offres par page
+  const [limit, setLimit] = useState(8);
+
+  // Le prix minimum
+  const [priceMin, setPriceMin] = useState(0);
+
+  // Le prix maximum
+  const [priceMax, setPriceMax] = useState(0);
 
   // Les URL...
+  // URL pour test en local
   //const urlBase = "http://localhost:3000/";
+  // URL pour test vers backend REACTEUR
   const urlBase = "https://lereacteur-vinted-api.herokuapp.com";
 
   return (
@@ -26,14 +43,27 @@ function App() {
       <Header
         token={token}
         setToken={setToken}
-        urlFilter={urlFilter}
-        setUrlFilter={setUrlFilter}
+        setSearchText={setSearchText}
+        setPriceMin={setPriceMin}
+        setPriceMax={setPriceMax}
+        setOrderBy={setOrderBy}
       ></Header>
       <Routes>
         <Route
           path="/"
           element={
-            <Home urlBase={urlBase} token={token} urlFilter={urlFilter} />
+            <Home
+              urlBase={urlBase}
+              token={token}
+              searchText={searchText}
+              priceMin={priceMin}
+              priceMax={priceMax}
+              orderBy={orderBy}
+              pageNumber={pageNumber}
+              setPageNumber={setPageNumber}
+              limit={limit}
+              setLimit={setLimit}
+            />
           }
         />
         <Route

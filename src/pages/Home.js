@@ -4,23 +4,52 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import banner from "../assets/images/banner.jpg";
 
-const Home = ({ urlBase, urlFilter }) => {
+import Pagination from "../components/Pagination";
+
+const Home = ({
+  urlBase,
+  pageNumber,
+  setPageNumber,
+  limit,
+  setLimit,
+  searchText,
+  priceMin,
+  priceMax,
+  orderBy,
+}) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("Home urlFilter -> ", urlFilter);
-
   useEffect(() => {
     const fetchData = async () => {
-      //const response = await axios.get("http://localhost:3200/");
+      let urlFilter = "?";
+      urlFilter += "page=" + (pageNumber ? pageNumber : 1);
+      urlFilter += "&limit=" + (limit ? limit : 8);
+
+      // Le texte de recherche
+      urlFilter += searchText ? "&title=" + searchText : "";
+
+      // Les prix min/max
+      urlFilter += priceMin ? "&priceMin=" + priceMin : "";
+      urlFilter += priceMax ? "&priceMax=" + priceMax : "";
+
+      // Le tri
+      urlFilter += orderBy ? "&sort=" + orderBy : "";
+      console.log("Home UrlFilter générée -> ", urlFilter);
+
+      // Requête axios vers backend REACTEUR
       const response = await axios.get(`${urlBase}/offers${urlFilter}`);
-      //console.log(response.data);
+      // On élimine les offres qui n'ont pas d'owner
+      // const data = response.data.offers.filter((elem) => elem.owner !== null);
+      // data.count = response.data.count - ( response.data.countdata.length;
+      console.log(response.data);
+      // setData(data);
       setData(response.data);
       setIsLoading(false);
     };
 
     fetchData();
-  }, [urlBase, urlFilter]);
+  }, [urlBase, pageNumber, limit, searchText, priceMax, priceMin, orderBy]);
 
   return isLoading ? (
     <p> En cours de chargement </p>
@@ -46,7 +75,7 @@ const Home = ({ urlBase, urlFilter }) => {
                       <img
                         src={elem.owner.account.avatar?.secure_url}
                         alt="owner"
-                        style={{ height: 50, width: 50, borderRadius: 50 }}
+                        style={{ height: 30, width: 30, borderRadius: 30 }}
                       />
                     )}
                     {elem.owner && <span>{elem.owner.account.username}</span>}
@@ -80,6 +109,13 @@ const Home = ({ urlBase, urlFilter }) => {
             );
           })}
         </div>
+
+        <Pagination
+          data={data}
+          setPageNumber={setPageNumber}
+          setLimit={setLimit}
+          limit={limit}
+        ></Pagination>
       </div>
     </main>
   );
