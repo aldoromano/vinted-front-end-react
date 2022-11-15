@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
-const Offer = ({ urlBase }) => {
+const Offer = ({ urlBase, token }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
@@ -43,11 +43,19 @@ const Offer = ({ urlBase }) => {
             );
           })}
         </div>
+        <hr />
         <div className="product-name-container">{data.product_description}</div>
         <div className="product-desc-container">{data.product_name}</div>
         {data.owner && (
           <div className="product-owner">{data.owner.account.username}</div>
         )}
+        <Link
+          to="/payment"
+          token={token}
+          state={{ title: data.product_name, price: "12" }}
+        >
+          <button>Acheter Maintenant</button>
+        </Link>
       </div>
     </div>
   );

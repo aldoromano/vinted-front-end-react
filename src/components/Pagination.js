@@ -15,6 +15,7 @@ const Pagination = ({ data, setPageNumber, setLimit, limit }) => {
       </button>
     );
   }
+
   return (
     <div className="pagination-container">
       {/* {tab.map((elem, index) => {

@@ -10,13 +10,14 @@ import Header from "./pages/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 function App() {
   // Le token
   const [token, setToken] = useState(Cookies.get("token") || null);
 
   // Le champ de recherche
-  const [searchText, setSearchText] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   // Le tri
   const [orderBy, setOrderBy] = useState("price-asc");
@@ -47,8 +48,11 @@ function App() {
       <Header
         token={token}
         setToken={setToken}
+        searchText={searchText}
         setSearchText={setSearchText}
+        priceMin={priceMin}
         setPriceMin={setPriceMin}
+        priceMax={priceMax}
         setPriceMax={setPriceMax}
         setOrderBy={setOrderBy}
         filter={filter}
@@ -78,10 +82,12 @@ function App() {
           path="/signup"
           element={<Signup urlBase={urlBase} setToken={setToken} />}
         />
+
         <Route
           path="/login"
           element={<Login urlBase={urlBase} setToken={setToken} />}
         />
+
         <Route
           path="/offer/:id"
           element={<Offer urlBase={urlBase} token={token} />}
@@ -90,6 +96,11 @@ function App() {
         <Route
           path="/publish"
           element={<Publish urlBase={urlBase} token={token} />}
+        />
+
+        <Route
+          path="/Payment"
+          element={<Payment urlBase={urlBase} token={token} />}
         />
       </Routes>
     </Router>

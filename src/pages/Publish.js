@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Publish = ({ urlBase, token }) => {
   const [file, setFile] = useState(null);
@@ -16,31 +16,25 @@ const Publish = ({ urlBase, token }) => {
 
   const [data, setData] = useState("");
 
-  const navigate = useNavigate(); // rappel
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const formData = new FormData();
 
-      console.log(title);
-      console.log(price);
-      console.log(file);
-
-      console.log("Données -> ", title, price, file);
       formData.append("title", title);
       formData.append("description", description);
       formData.append("brand", brand);
       formData.append("size", size);
       formData.append("color", color);
       formData.append("city", city);
+      formData.append("price", price);
       formData.append("condition", condition);
       formData.append("picture", file);
 
       const response = await axios.post(`${urlBase}/offer/publish`, formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });
@@ -82,6 +76,8 @@ const Publish = ({ urlBase, token }) => {
             <p>Décris ton article</p>
             <input
               type="textarea"
+              cols="30"
+              rows="5"
               value={description}
               onChange={(event) => {
                 setDescription(event.target.value);
@@ -173,7 +169,7 @@ const Publish = ({ urlBase, token }) => {
       </form>
     </div>
   ) : (
-    navigate("/")
+    <Navigate to="/login" />
   );
 };
 

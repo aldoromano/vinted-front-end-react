@@ -18,7 +18,7 @@ const Login = ({ urlBase, setToken }) => {
       console.log(response.data.token);
       Cookies.set("token", response.data.token, { expires: 7 });
       setToken(response.data.token);
-      navigate("/");
+      navigate("/offer");
     } catch (error) {
       console.log("Erreur : ", error.response.data);
     }

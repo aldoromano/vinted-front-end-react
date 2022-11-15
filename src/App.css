@@ -26,7 +26,15 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+
+.header-element-container p {
+  font-size: 0.8rem;
+}
+
+.header-element-container input {
+  width: 20%;
 }
 
 header .logo {
@@ -135,6 +143,11 @@ main {
   align-items: center;
   background-color: lightgray;
   height: calc(100vh - 100px);
+}
+
+.offer-container hr {
+  border: 1px solid lightgray;
+  width: 100%;
 }
 
 .header-image-container {

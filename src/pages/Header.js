@@ -5,8 +5,11 @@ import logo from "../assets/images/logo.svg";
 const Header = ({
   token,
   setToken,
+  searchText,
   setSearchText,
+  priceMin,
   setPriceMin,
+  priceMax,
   setPriceMax,
   setOrderBy,
   filter,
@@ -40,16 +43,20 @@ const Header = ({
         </div>
         <div className="header-elements-container">
           <div className="header-element-container">
-            <div className="input-search">
-              <input
-                type="text"
-                placeholder="Recherche des articles"
-                onChange={(event) => {
-                  setSearchText(event.target.value);
-                  // alert("ON change " + event.target.value);
-                }}
-              />
-            </div>
+            {
+              <div className="input-search">
+                <input
+                  type="text"
+                  placeholder="Recherche des articles"
+                  value={searchText}
+                  onChange={(event) => {
+                    setSearchText(event.target.value);
+                    // alert("ON change " + event.target.value);
+                  }}
+                />
+              </div>
+            }
+
             {token ? null : (
               <Link to="/signup">
                 <div
@@ -89,11 +96,13 @@ const Header = ({
               </div>
             </Link>
           </div>
+
           {filter && (
             <div className="header-element-container">
               <input
                 type="text"
                 placeholder="Prix minimum"
+                value={priceMin}
                 onChange={(event) => {
                   setPriceMin(event.target.value);
                 }}
@@ -101,11 +110,12 @@ const Header = ({
               <input
                 type="text"
                 placeholder="Prix maximum"
+                value={priceMax}
                 onChange={(event) => {
                   setPriceMax(event.target.value);
                 }}
               ></input>
-              Croissant :
+              <p>Affichage des prix : Croissant :</p>
               <input
                 type="radio"
                 name="order"
@@ -114,7 +124,7 @@ const Header = ({
                   setRadioValue();
                 }}
               />
-              Décroissant :
+              <p>Décroissant </p>
               <input
                 type="radio"
                 name="order"

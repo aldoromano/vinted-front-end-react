@@ -16,9 +16,14 @@ const Home = ({
   priceMin,
   priceMax,
   orderBy,
+  filter,
+  setFilter,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  // On affiche les filtres
+  setFilter(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,48 +69,57 @@ const Home = ({
           {data.offers.map((elem) => {
             // console.log(elem);
             return (
-              elem.owner && (
-                <Link
-                  to={`/offer/${elem._id}`}
-                  key={elem._id}
-                  className="offer-card-container"
-                >
-                  <div className="header-image-container">
-                    {elem.owner && (
-                      <img
-                        src={elem.owner.account.avatar?.secure_url}
-                        alt="owner"
-                        style={{ height: 30, width: 30, borderRadius: 30 }}
-                      />
-                    )}
-                    {elem.owner && <span>{elem.owner.account.username}</span>}
-                  </div>
-                  <div className="image-container">
+              <Link
+                to={`/offer/${elem._id}`}
+                key={elem._id}
+                className="offer-card-container"
+                onClick={() => {
+                  setFilter(false);
+                }}
+              >
+                <div className="header-image-container">
+                  {
                     <img
-                      src={elem.product_image.secure_url}
-                      alt="product-rep"
-                    ></img>
-                  </div>
+                      src={
+                        elem.owner
+                          ? elem.owner.account.avatar?.secure_url
+                          : null
+                      }
+                      alt="owner"
+                      style={{ height: 30, width: 30, borderRadius: 30 }}
+                    />
+                  }
+                  {
+                    <span>
+                      {elem.owner ? elem.owner.account.username : null}
+                    </span>
+                  }
+                </div>
+                <div className="image-container">
+                  <img
+                    src={elem.product_image.secure_url}
+                    alt="product-rep"
+                  ></img>
+                </div>
 
-                  <div>
-                    <p>{elem.product_price} €</p>
-                    {elem.product_details.map((detail, index) => {
-                      if (detail.TAILLE) {
-                        return <p key={index}>{detail.TAILLE}</p>;
-                      } else {
-                        return null;
-                      }
-                    })}
-                    {elem.product_details.map((detail, index) => {
-                      if (detail.MARQUE) {
-                        return <p key={index}>{detail.MARQUE}</p>;
-                      } else {
-                        return null;
-                      }
-                    })}
-                  </div>
-                </Link>
-              )
+                <div>
+                  <p>{elem.product_price} €</p>
+                  {elem.product_details.map((detail, index) => {
+                    if (detail.TAILLE) {
+                      return <p key={index}>{detail.TAILLE}</p>;
+                    } else {
+                      return null;
+                    }
+                  })}
+                  {elem.product_details.map((detail, index) => {
+                    if (detail.MARQUE) {
+                      return <p key={index}>{detail.MARQUE}</p>;
+                    } else {
+                      return null;
+                    }
+                  })}
+                </div>
+              </Link>
             );
           })}
         </div>
