@@ -1,5 +1,5 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
@@ -36,12 +36,12 @@ const CheckoutForm = () => {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
-          stripeToken: stripeToken,
+          token: stripeToken,
           title: title,
           amount: price,
         }
       );
-      if (response.data === "succeeded") {
+      if (response.data.status === "succeeded") {
         setIsLoading(false);
         setCompleted(true);
       } else {
@@ -56,7 +56,7 @@ const CheckoutForm = () => {
   return (
     <div className="payment-container">
       <form onSubmit={handleSubmit}>
-        <h2>Résumé de la commande : {title}</h2>
+        <h2>Résumé de la commande </h2>
         <div className="payment-elements-container">
           <div className="payment-element-container">
             <p>Commande</p>
@@ -71,15 +71,26 @@ const CheckoutForm = () => {
             <p>Frais de port</p>
             <p>{TAX_SHIPPING} €</p>
           </div>
-          <hr></hr>
+          <div className="payment-element-container payment-element-total">
+            <p>Total</p>
+            <p>{(price + TAX_PROTECTION + TAX_SHIPPING).toFixed(2)} €</p>
+          </div>
+          <p>
+            Il ne vous reste plus qu'une étape pour vous offrir
+            <strong> {title}</strong>. Vous allez payer
+            <strong>
+              {(price + TAX_PROTECTION + TAX_SHIPPING).toFixed(2)}
+            </strong>
+            (frais de protection et frais de port inclus)
+          </p>
         </div>
         <CardElement />
         {isLoading ? (
           <p>Loading...</p>
         ) : completed ? (
-          <p>Paiement effectué</p>
+          <Navigate to="/" />
         ) : (
-          <input type="submit" />
+          <input type="submit" value="Pay" className="payment-button" />
         )}
       </form>
     </div>

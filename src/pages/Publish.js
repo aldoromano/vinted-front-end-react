@@ -14,7 +14,7 @@ const Publish = ({ urlBase, token }) => {
   const [brand, setBrand] = useState("nike");
   const [size, setSize] = useState("M");
 
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
