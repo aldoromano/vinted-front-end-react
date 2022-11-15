@@ -8,6 +8,8 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   // Permet de récupérer les code banquaires dans l'input de carte banquaire
   const elements = useElements();
+  const TAX_PROTECTION = 0.4;
+  const TAX_SHIPPING = 0.8;
 
   const location = useLocation();
   const { price, title, id } = location.state;
@@ -24,7 +26,7 @@ const CheckoutForm = () => {
       const cardElement = elements.getElement(CardElement);
       //   J'envoie ces informations à stripe pour qu'il me fournisse un token, on envoie les données banquaires dans la requête
       const stripeResponse = await stripe.createToken(cardElement, {
-        name: "TEST!",
+        name: id,
       });
       console.log(stripeResponse);
       const stripeToken = stripeResponse.token.id;
@@ -35,6 +37,8 @@ const CheckoutForm = () => {
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
           stripeToken: stripeToken,
+          title: title,
+          amount: price,
         }
       );
       if (response.data === "succeeded") {
@@ -52,22 +56,31 @@ const CheckoutForm = () => {
   return (
     <div className="payment-container">
       <form onSubmit={handleSubmit}>
+        <h2>Résumé de la commande : {title}</h2>
         <div className="payment-elements-container">
-          <h2>Résumé de la commande : </h2>
-          <p>{title}</p>
-          <p>Commande</p>
-          <p>{price}</p>
-          <p>Frais de protection acheteurs</p>
-          <p>Frais de port</p>
-          <CardElement />
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : completed ? (
-            <p>Paiement effectué</p>
-          ) : (
-            <input type="submit" />
-          )}
+          <div className="payment-element-container">
+            <p>Commande</p>
+            <p>{price} €</p>
+          </div>
+
+          <div className="payment-element-container">
+            <p>Frais de protection acheteurs</p>
+            <p>{TAX_PROTECTION} €</p>
+          </div>
+          <div className="payment-element-container">
+            <p>Frais de port</p>
+            <p>{TAX_SHIPPING} €</p>
+          </div>
+          <hr></hr>
         </div>
+        <CardElement />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : completed ? (
+          <p>Paiement effectué</p>
+        ) : (
+          <input type="submit" />
+        )}
       </form>
     </div>
   );

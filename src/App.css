@@ -1,3 +1,20 @@
+/* Général */
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+
+html {
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bol;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -24,7 +41,7 @@ header {
 
 .header-element-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
 }
@@ -33,22 +50,25 @@ header {
   font-size: 0.8rem;
 }
 
-.header-element-container input {
-  width: 20%;
-}
-
 header .logo {
   flex: 1;
 }
 
 header .input-search {
-  flex: 2;
+  width: 50%;
+}
+
+header .input-search input {
+  width: 100%;
+}
+header .input-price {
+  width: 10%;
 
   /* border: 1px solid lightgrey; */
 }
 
 header input {
-  width: 80%;
+  /* width: 80%; */
   color: grey;
   border: none;
   background-color: rgba(239, 226, 226, 0.875);
@@ -89,22 +109,7 @@ header .sell-tag {
   object-fit: cover;
   width: 100%;
 }
-/* Général */
 
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
-
-html {
-}
-
-body {
-  font-family: "Quicksand", sans-serif;
-}
-
-h1 {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bol;
-}
 /* Home page */
 main {
   /* background-color: lightgray; */
@@ -326,8 +331,25 @@ input {
   margin: 0 auto;
 }
 
+.payment-container h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: lightgray;
+  display: flex;
+  flex-direction: column;
+}
+
 .payment-elements-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid lightgray;
+  margin-bottom: 1rem;
+}
+
+.payment-element-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

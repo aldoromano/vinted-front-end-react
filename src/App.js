@@ -14,7 +14,7 @@ import Payment from "./pages/Payment";
 
 function App() {
   // Le token
-  const [token, setToken] = useState(Cookies.get("token") || null);
+  const [token, setToken] = useState(Cookies.get("token") || "");
 
   // Le champ de recherche
   const [searchText, setSearchText] = useState("");

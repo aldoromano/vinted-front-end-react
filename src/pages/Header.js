@@ -100,22 +100,24 @@ const Header = ({
           {filter && (
             <div className="header-element-container">
               <input
+                className="input-price"
                 type="text"
-                placeholder="Prix minimum"
-                value={priceMin}
+                placeholder={priceMin ? null : "Prix minimum"}
+                value={priceMin ? priceMin : null}
                 onChange={(event) => {
                   setPriceMin(event.target.value);
                 }}
               ></input>
               <input
+                className="input-price"
                 type="text"
-                placeholder="Prix maximum"
-                value={priceMax}
+                placeholder={priceMax ? null : "Prix maximum"}
+                value={priceMax ? priceMax : null}
                 onChange={(event) => {
                   setPriceMax(event.target.value);
                 }}
               ></input>
-              <p>Affichage des prix : Croissant :</p>
+              <p>Prix Croissants :</p>
               <input
                 type="radio"
                 name="order"
@@ -124,7 +126,7 @@ const Header = ({
                   setRadioValue();
                 }}
               />
-              <p>Décroissant </p>
+              <p>Prix Décroissants : </p>
               <input
                 type="radio"
                 name="order"
