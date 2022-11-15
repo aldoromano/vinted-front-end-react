@@ -318,3 +318,16 @@ input {
   font-weight: bold;
   vertical-align: center;
 }
+
+/* Paiement */
+
+.payment-container {
+  max-width: 1225px;
+  margin: 0 auto;
+}
+
+.payment-elements-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -52,7 +52,11 @@ const Offer = ({ urlBase, token }) => {
         <Link
           to="/payment"
           token={token}
-          state={{ title: data.product_name, price: "12" }}
+          state={{
+            title: data.product_name,
+            price: data.product_price,
+            id: data.owner._id,
+          }}
         >
           <button>Acheter Maintenant</button>
         </Link>

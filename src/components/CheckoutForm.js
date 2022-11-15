@@ -10,11 +10,12 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   const location = useLocation();
-  const { price, title } = location.state;
+  const { price, title, id } = location.state;
 
   const [completed, setCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  //console.log("id -> ", id);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -23,11 +24,11 @@ const CheckoutForm = () => {
       const cardElement = elements.getElement(CardElement);
       //   J'envoie ces informations à stripe pour qu'il me fournisse un token, on envoie les données banquaires dans la requête
       const stripeResponse = await stripe.createToken(cardElement, {
-        name: "L'id de l'acheteur",
+        name: "TEST!",
       });
-      //   console.log(stripeResponse);
+      console.log(stripeResponse);
       const stripeToken = stripeResponse.token.id;
-      //   console.log("token reçu depuis stripe : ", stripeToken);
+      console.log("token reçu depuis stripe : ", stripeToken);
 
       //   J'envoie le token reçu depuis stripe à mon backend
       const response = await axios.post(
@@ -49,21 +50,26 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Résumé de la commande : {title}</h2>
-      <p>Commande</p>
-      <p>{price}</p>
-      <p>Frais de protection acheteurs</p>
-      <p>Frais de port</p>
-      <CardElement />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : completed ? (
-        <p>Paiement effectué</p>
-      ) : (
-        <input type="submit" />
-      )}
-    </form>
+    <div className="payment-container">
+      <form onSubmit={handleSubmit}>
+        <div className="payment-elements-container">
+          <h2>Résumé de la commande : </h2>
+          <p>{title}</p>
+          <p>Commande</p>
+          <p>{price}</p>
+          <p>Frais de protection acheteurs</p>
+          <p>Frais de port</p>
+          <CardElement />
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : completed ? (
+            <p>Paiement effectué</p>
+          ) : (
+            <input type="submit" />
+          )}
+        </div>
+      </form>
+    </div>
   );
 };
 
