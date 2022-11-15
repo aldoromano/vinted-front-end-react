@@ -50,6 +50,10 @@ header {
   font-size: 0.8rem;
 }
 
+.header-element-container [type="radio"] {
+  cursor: pointer;
+}
+
 header .logo {
   flex: 1;
 }
@@ -87,11 +91,12 @@ header .other-tag {
 }
 
 .header-tag-logout {
-  background-color: rgb(105, 27, 27);
+  background-color: #ee3a43;
   border: none;
   color: white;
   padding: 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 header .sell-tag {
@@ -127,7 +132,7 @@ main {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .image-container img {
@@ -272,6 +277,7 @@ input {
   background-color: lightseagreen;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .pagination-container input {
@@ -279,6 +285,7 @@ input {
   color: white;
   border: none;
   text-align: center;
+  cursor: pointer;
 }
 
 /* PUBLISH */
@@ -295,6 +302,17 @@ input {
 
 .publish-container form {
   width: 75%;
+}
+
+.publish-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.publish-container [type="submit"] {
+  background-color: lightseagreen;
+  color: white;
+  cursor: pointer;
 }
 .publish-general-container {
   border: 1px solid rgb(236, 226, 226);
@@ -324,6 +342,11 @@ input {
   vertical-align: center;
 }
 
+.publish-item-last-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Paiement */
 
 .payment-container {
@@ -359,4 +382,15 @@ input {
   color: white;
   width: 100%;
   height: 2rem;
+  margin-top: 1rem;
+}
+
+.payment-elements-container p span {
+  font-weight: bold;
+}
+
+.payment-element-total {
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }

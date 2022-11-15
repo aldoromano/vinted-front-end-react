@@ -122,6 +122,7 @@ const Header = ({
                 type="radio"
                 name="order"
                 value="price-asc"
+                checked
                 onClick={() => {
                   setRadioValue();
                 }}

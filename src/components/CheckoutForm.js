@@ -60,16 +60,16 @@ const CheckoutForm = () => {
         <div className="payment-elements-container">
           <div className="payment-element-container">
             <p>Commande</p>
-            <p>{price} €</p>
+            <p>{price.toFixed(2)} €</p>
           </div>
 
           <div className="payment-element-container">
             <p>Frais de protection acheteurs</p>
-            <p>{TAX_PROTECTION} €</p>
+            <p>{TAX_PROTECTION.toFixed(2)} €</p>
           </div>
           <div className="payment-element-container">
             <p>Frais de port</p>
-            <p>{TAX_SHIPPING} €</p>
+            <p>{TAX_SHIPPING.toFixed(2)} €</p>
           </div>
           <div className="payment-element-container payment-element-total">
             <p>Total</p>
@@ -77,10 +77,10 @@ const CheckoutForm = () => {
           </div>
           <p>
             Il ne vous reste plus qu'une étape pour vous offrir
-            <strong> {title}</strong>. Vous allez payer
-            <strong>
+            <span class=""> {title}</span>. Vous allez payer
+            <span class="">
               {(price + TAX_PROTECTION + TAX_SHIPPING).toFixed(2)}
-            </strong>
+            </span>
             (frais de protection et frais de port inclus)
           </p>
         </div>

@@ -4,15 +4,15 @@ import { Navigate } from "react-router-dom";
 
 const Publish = ({ urlBase, token }) => {
   const [file, setFile] = useState(null);
-  const [title, setTitle] = useState("titre");
-  const [description, setDescription] = useState("description");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  const [price, setPrice] = useState(50);
-  const [city, setCity] = useState("Paris");
-  const [condition, setCondition] = useState("Neuf");
-  const [color, setColor] = useState("vert");
-  const [brand, setBrand] = useState("nike");
-  const [size, setSize] = useState("M");
+  const [price, setPrice] = useState(0);
+  const [city, setCity] = useState("");
+  const [condition, setCondition] = useState("");
+  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
+  const [size, setSize] = useState("");
 
   // const [data, setData] = useState("");
 
@@ -153,19 +153,21 @@ const Publish = ({ urlBase, token }) => {
             <p>Prix</p>
             <input
               type="text"
-              value={price}
+              value={price ? price : ""}
               onChange={(event) => {
                 setPrice(event.target.value);
               }}
               placeholder="Ex : 25 €"
             />
           </div>
-          <div className="publish-item-container">
-            <p> </p>
-            <input type="checkbox" /> Je suis intéressé(e) par les échanges
+          <div className="publish-item-last-container">
+            <input type="checkbox" />{" "}
+            <p>Je suis intéressé(e) par les échanges</p>
           </div>
         </div>
-        <input type="submit" value="ajouter" />
+        <div className="publish-button-container">
+          <input type="submit" value="ajouter" />
+        </div>
       </form>
     </div>
   ) : (

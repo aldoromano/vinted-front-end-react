@@ -1,9 +1,11 @@
 const Pagination = ({ data, setPageNumber, setLimit, limit }) => {
+  // Calcul du nombre de pages
   let numberOfPages = data.count / (limit ? limit : 8);
 
+  // On prévoit un tableau contenant autant d'éléments que de pages
   const tab = [];
   for (let i = 0; i < numberOfPages; i++) {
-    // tab[i] = i;
+    // On met à jour dynamiquement le code HTML dans le tableau
     tab.push(
       <button
         key={i}
@@ -18,18 +20,6 @@ const Pagination = ({ data, setPageNumber, setLimit, limit }) => {
 
   return (
     <div className="pagination-container">
-      {/* {tab.map((elem, index) => {
-        return (
-          <button
-            key={index}
-            onClick={() => {
-              setPageNumber(index + 1);
-            }}
-          >
-            {index + 1}
-          </button>
-        );
-      })} */}
       {tab}
       <input
         type="text"
