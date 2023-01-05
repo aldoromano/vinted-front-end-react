@@ -1,4 +1,4 @@
-# Clone du site vinted
+# Clone du site vinted (formation au REACTEUR)
 
 Un des (nombreux) projets réalisés au REACTEUR. Il s'agissait de reprendre les principales fonctionnalités du site VINTED :
 
